@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="helloworld" default="all">
+  
+  
+  <property file="ProducerActiveMQ.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.ear"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.activemq-all-5.14.4.classpath">
+    <pathelement location="${basedir}/lib/activemq-all-5.14.4.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module HelloWorld -->
+  
+  <dirname property="module.helloworld.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.helloworld" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.helloworld" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.helloworld" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.helloworld" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="helloworld.output.dir" value="${module.helloworld.basedir}/out/production/HelloWorld"/>
+  <property name="helloworld.testoutput.dir" value="${module.helloworld.basedir}/out/test/HelloWorld"/>
+  
+  <path id="helloworld.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="helloworld.module.production.classpath">
+    <path refid="${module.jdk.classpath.helloworld}"/>
+    <path refid="library.activemq-all-5.14.4.classpath"/>
+  </path>
+  
+  <path id="helloworld.runtime.production.module.classpath">
+    <pathelement location="${helloworld.output.dir}"/>
+    <path refid="library.activemq-all-5.14.4.classpath"/>
+  </path>
+  
+  <path id="helloworld.module.classpath">
+    <path refid="${module.jdk.classpath.helloworld}"/>
+    <pathelement location="${helloworld.output.dir}"/>
+    <path refid="library.activemq-all-5.14.4.classpath"/>
+  </path>
+  
+  <path id="helloworld.runtime.module.classpath">
+    <pathelement location="${helloworld.testoutput.dir}"/>
+    <pathelement location="${helloworld.output.dir}"/>
+    <path refid="library.activemq-all-5.14.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.helloworld">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.helloworld">
+    <patternset refid="excluded.from.module.helloworld"/>
+  </patternset>
+  
+  <path id="helloworld.module.sourcepath">
+    <dirset dir="${module.helloworld.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.helloworld" depends="compile.module.helloworld.production,compile.module.helloworld.tests" description="Compile module HelloWorld"/>
+  
+  <target name="compile.module.helloworld.production" depends="register.custom.compilers" description="Compile module HelloWorld; production classes">
+    <mkdir dir="${helloworld.output.dir}"/>
+    <javac2 destdir="${helloworld.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.helloworld}/javac">
+      <compilerarg line="${compiler.args.helloworld}"/>
+      <bootclasspath refid="helloworld.module.bootclasspath"/>
+      <classpath refid="helloworld.module.production.classpath"/>
+      <src refid="helloworld.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.helloworld"/>
+    </javac2>
+    
+    <copy todir="${helloworld.output.dir}">
+      <fileset dir="${module.helloworld.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.helloworld.tests" depends="register.custom.compilers,compile.module.helloworld.production" description="compile module HelloWorld; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.helloworld" description="cleanup module">
+    <delete dir="${helloworld.output.dir}"/>
+    <delete dir="${helloworld.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.helloworld" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.helloworld" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
