@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Main {
 
     private static int[] array;
-    private static final int SIZE = 10;
+    private static final int SIZE = 20;
     private static final int MAX = 20;
 
     public static void main(String[] args) {
@@ -24,6 +24,40 @@ public class Main {
         //kmp
         System.out.println();
         System.out.println("Knutt-Morris-Pratt");
+        Tekst tekst = new Tekst();
+        //testen knuth-morris-pratt
+        System.out.println("Test knuth-morris-pratt");
+
+        Tabel zomer = tekst.searchKMP("zomer");
+        System.out.println("\t knuth-morris-pratt \t zomer \t\t\t aantal: "
+                + zomer.getTeller() + "\t vergelijkingen: " + zomer.getVergelijkingen());
+        Tabel en = tekst.searchKMP("en");
+        System.out.println("\t knuth-morris-pratt \t en \t\t\t aantal: "
+                + en.getTeller() + "\t vergelijkingen: " + en.getVergelijkingen());
+        Tabel tweelingsterren = tekst.searchKMP("tweelingsterren");
+        System.out.println("\t knuth-morris-pratt \t tweelingsterren \t aantal: "
+                + tweelingsterren.getTeller() + "\t vergelijkingen: " + tweelingsterren.getVergelijkingen());
+        Tabel fietsen = tekst.searchKMP("fietsen");
+        System.out.println("\t knuth-morris-pratt \t fietsen \t\t aantal: "
+                + fietsen.getTeller() + "\t vergelijkingen: " + fietsen.getVergelijkingen());
+        Tabel Geluid = tekst.searchKMP("Geluid");
+        System.out.println("\t knuth-morris-pratt \t Geluid \t\t aantal: "
+                + Geluid.getTeller() + "\t vergelijkingen: " + Geluid.getVergelijkingen());
+        Tabel Plotseling = tekst.searchKMP("Plotseling");
+        System.out.println("\t knuth-morris-pratt \t Plotseling \t\t aantal: "
+                + Plotseling.getTeller() + "\t vergelijkingen: " + Plotseling.getVergelijkingen());
+        Tabel meisjes = tekst.searchKMP("meisjes");
+        System.out.println("\t knuth-morris-pratt \t meisjes \t\t aantal: "
+                + meisjes.getTeller() + "\t vergelijkingen: " + meisjes.getVergelijkingen());
+        Tabel boerinnen = tekst.searchKMP("boerinnen");
+        System.out.println("\t knuth-morris-pratt \t boerinnen \t\t aantal: "
+                + boerinnen.getTeller() + "\t vergelijkingen: " + boerinnen.getVergelijkingen());
+        Tabel waarom = tekst.searchKMP("waarom");
+        System.out.println("\t knuth-morris-pratt \t waarom \t\t aantal: "
+                + waarom.getTeller() + "\t vergelijkingen: " + waarom.getVergelijkingen());
+        Tabel Mei = tekst.searchKMP("Mei");
+        System.out.println("\t knuth-morris-pratt \t Mei \t\t\t aantal: "
+                + Mei.getTeller() + "\t vergelijkingen: " + Mei.getVergelijkingen());
     }
 
     public static void createRandomArray(){
@@ -73,6 +107,7 @@ public class Main {
 
         double eind = System.nanoTime();
         //Verschil in tijd geconverteerd naar seconden
+        System.out.println();
         System.out.println("Tijd(sec):  " + (eind - begin) / 1000000000);
         for(Integer i : array){
             System.out.print(i + ", ");
@@ -109,6 +144,7 @@ public class Main {
 
         double eind = System.nanoTime();
         //Verschil in tijd geconverteerd naar seconden
+        System.out.println();
         System.out.println("Tijd(sec):  " + (eind - begin) / 1000000000);
         for (Integer j : array){
             System.out.print(j + ", ");
