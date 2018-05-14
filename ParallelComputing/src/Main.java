@@ -14,7 +14,6 @@ public class Main {
         System.out.println("Bucketsort");
         createRandomArray();
         bucketsort(array);
-
     }
 
     public static void createRandomArray(){
@@ -32,14 +31,17 @@ public class Main {
         int bucketsize = (int) Math.ceil(MAX / amountofbuckets);
 
         // add buckets
-        System.out.println("Create buckets");
+        double addbuckets = System.nanoTime();
+        System.out.print("Create buckets - ");
         LinkedList[] bucket = new LinkedList[amountofbuckets];
         for (int i = 0; i < amountofbuckets; i++) {
             bucket[i] = new LinkedList<Integer>();
         }
+        System.out.println((System.nanoTime() - addbuckets) / 1000000000);
 
         //loop array and put in buckets
-        System.out.println("Put array in buckets");
+        double arrayinbuckets = System.nanoTime();
+        System.out.print("Put array in buckets - ");
         for (int i = 0; i < array.length; i++) {
             for (int j = 1; j <= amountofbuckets; j++){
                 if (array[i]< bucketsize*j) {
@@ -48,6 +50,7 @@ public class Main {
                 }
             }
         }
+        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
 
         //print bucket size of buckets
         for (int i = 0; i < amountofbuckets; i++){
@@ -55,13 +58,16 @@ public class Main {
         }
 
         //sort every bucket
-        System.out.println("Sort buckets");
+        double sortbuckets = System.nanoTime();
+        System.out.print("Sort buckets - ");
         for (int i = 0; i < amountofbuckets; i++) {
             Collections.sort(bucket[i]);
         }
+        System.out.println((System.nanoTime() - sortbuckets) / 1000000000);
 
         //buckets to array
-        System.out.println("Buckets to array");
+        double bucketstoarray = System.nanoTime();
+        System.out.print("Buckets to array - ");
         int index = 0;
         for (int i = 0; i < bucket.length; i++) {
             for (int j = 0; j < bucket[i].size(); j++) {
@@ -69,6 +75,7 @@ public class Main {
                 index++;
             }
         }
+        System.out.println((System.nanoTime() - bucketstoarray) / 1000000000);
 
         double eind = System.nanoTime();
         System.out.println();
