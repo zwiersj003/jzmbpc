@@ -7,7 +7,7 @@ public class Main {
     private static int[] array;
     private static final int SIZE = 1000000;
     private static final int MAX = 1000000;
-    private static final int amountofbuckets = 2;
+    private static final int amountofbuckets = 4;
 
     public static void main(String[] args) {
         //bucketsort
@@ -49,6 +49,7 @@ public class Main {
             }
         }
 
+        //print bucket size of buckets
         for (int i = 0; i < amountofbuckets; i++){
             System.out.println("bucketsize" + i +" = "+bucket[i].size());
         }
