@@ -6,20 +6,14 @@ public class Main {
 
     private static int[] array;
     private static final int SIZE = 1000000;
-    private static final int MAX = 20;
+    private static final int MAX = 1000000;
+    private static final int amountofbuckets = 2;
 
     public static void main(String[] args) {
-
-        //bucketsort werkt
+        //bucketsort
         System.out.println("Bucketsort");
         createRandomArray();
         bucketsort(array);
-
-        //pigeonholesort werkt
-        System.out.println();
-        System.out.println("Pigeonhole sort");
-//        createRandomArray();
-//        pigeonholesort(array);
 
     }
 
@@ -34,7 +28,8 @@ public class Main {
     public static void bucketsort(int[] array) {
         double begin = System.nanoTime();
 
-        int amountofbuckets = 2;
+        //How many buckets and how big are they
+        int bucketsize = (int) Math.ceil(MAX / amountofbuckets);
 
         // add buckets
         System.out.println("Create buckets");
@@ -45,14 +40,19 @@ public class Main {
 
         //loop array and put in buckets
         System.out.println("Put array in buckets");
-        int index = 0;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] < 10)
-                index = 0;
-            else
-                index = 1;
-            bucket[index].add(array[i]);
+            for (int j = 1; j <= amountofbuckets; j++){
+                if (array[i]< bucketsize*j) {
+                    bucket[j-1].add(array[i]);
+                    break;
+                }
+            }
         }
+
+        for (int i = 0; i < amountofbuckets; i++){
+            System.out.println("bucketsize" + i +" = "+bucket[i].size());
+        }
+
         //sort every bucket
         System.out.println("Sort buckets");
         for (int i = 0; i < amountofbuckets; i++) {
@@ -61,7 +61,7 @@ public class Main {
 
         //buckets to array
         System.out.println("Buckets to array");
-        index = 0;
+        int index = 0;
         for (int i = 0; i < bucket.length; i++) {
             for (int j = 0; j < bucket[i].size(); j++) {
                 array[index] = (Integer) bucket[i].get(j);
