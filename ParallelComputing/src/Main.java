@@ -5,9 +5,9 @@ import java.util.LinkedList;
 public class Main {
 
     private static int[] array;
-    private static final int SIZE = 1000000;
+    private static final int SIZE = 10000000;
     private static final int MAX = 1000000;
-    private static final int amountofbuckets = 4;
+    private static final int amountofbuckets = 500;
 
     public static void main(String[] args) {
         //bucketsort
@@ -76,11 +76,27 @@ public class Main {
             }
         }
         System.out.println((System.nanoTime() - bucketstoarray) / 1000000000);
+        for (Integer arr : array) {
+            System.out.println(arr);
+        }
 
         double eind = System.nanoTime();
         System.out.println();
         System.out.println("Tijd(sec):  " + (eind - begin) / 1000000000);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void pigeonholesort(int[] array)
     {
