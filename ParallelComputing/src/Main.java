@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 
 public class Main {
 
     private static int[] array;
+    private static int[] firstHalf;
+    private static int[] secondHalf;
     private static final int SIZE = 10000000;
     private static final int MAX = 1000000;
     private static final int amountofbuckets = 500;
@@ -24,6 +27,11 @@ public class Main {
         }
     }
 
+    public static void splitArray(){
+        firstHalf = Arrays.copyOfRange(array, 0, array.length/2);
+        secondHalf= Arrays.copyOfRange(array, array.length/2, array.length);
+    }
+
     public static void bucketsort(int[] array) {
         double begin = System.nanoTime();
 
@@ -37,20 +45,29 @@ public class Main {
         for (int i = 0; i < amountofbuckets; i++) {
             bucket[i] = new LinkedList<Integer>();
         }
+
         System.out.println((System.nanoTime() - addbuckets) / 1000000000);
 
         //loop array and put in buckets
-        double arrayinbuckets = System.nanoTime();
-        System.out.print("Put array in buckets - ");
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 1; j <= amountofbuckets; j++){
-                if (array[i]< bucketsize*j) {
-                    bucket[j-1].add(array[i]);
-                    break;
-                }
-            }
-        }
-        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
+//        double arrayinbuckets = System.nanoTime();
+//        System.out.print("Put array in buckets - ");
+//        for (int i = 0; i < array.length; i++) {
+//            for (int j = 1; j <= amountofbuckets; j++){
+//                if (array[i]< bucketsize*j) {
+//                    bucket[j-1].add(array[i]);
+//                    break;
+//                }
+//            }
+//        }
+//        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
+
+        splitArray();
+
+        myThread myThread1 = new myThread(firstHalf, bucketsize, bucket, amountofbuckets);
+        myThread1.start();
+        myThread myThread2 = new myThread(secondHalf, bucketsize, bucket, amountofbuckets);
+        myThread2.start();
+
 
         //print bucket size of buckets
         for (int i = 0; i < amountofbuckets; i++){
@@ -76,9 +93,14 @@ public class Main {
             }
         }
         System.out.println((System.nanoTime() - bucketstoarray) / 1000000000);
-        for (Integer arr : array) {
-            System.out.println(arr);
-        }
+
+//        for (Integer arr : firstHalf) {
+//            System.out.println(arr);
+//        }
+//
+//        for (Integer arr : secondHalf) {
+//            System.out.println(arr);
+//        }
 
         double eind = System.nanoTime();
         System.out.println();
