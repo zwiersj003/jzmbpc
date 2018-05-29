@@ -8,9 +8,9 @@ public class Main {
     private static int[] array;
     private static int[] firstHalf;
     private static int[] secondHalf;
-    private static final int SIZE = 10000000;
+    private static final int SIZE = 1000;
     private static final int MAX = 1000000;
-    private static final int amountofbuckets = 500;
+    private static final int amountofbuckets = 10;
 
     public static void main(String[] args) {
         //bucketsort
@@ -67,9 +67,17 @@ public class Main {
         myThread1.start();
         myThread myThread2 = new myThread(secondHalf, bucketsize, bucket, amountofbuckets);
         myThread2.start();
+        while (true) {
+            try {
+                myThread1.join();
+                myThread2.join();
+                break;
+            } catch (Exception e) {
 
-
+            }
+        }
         //print bucket size of buckets
+        System.out.println("amount of buckets" + bucket.length);
         for (int i = 0; i < amountofbuckets; i++){
             System.out.println("bucketsize" + i +" = "+bucket[i].size());
         }
