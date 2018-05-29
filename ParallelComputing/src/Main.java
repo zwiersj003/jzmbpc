@@ -49,8 +49,9 @@ public class Main {
         System.out.println((System.nanoTime() - addbuckets) / 1000000000);
 
         //loop array and put in buckets
-//        double arrayinbuckets = System.nanoTime();
-//        System.out.print("Put array in buckets - ");
+        double arrayinbuckets = System.nanoTime();
+        System.out.print("Put array in buckets - ");
+
 //        for (int i = 0; i < array.length; i++) {
 //            for (int j = 1; j <= amountofbuckets; j++){
 //                if (array[i]< bucketsize*j) {
@@ -59,7 +60,6 @@ public class Main {
 //                }
 //            }
 //        }
-//        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
 
         splitArray();
 
@@ -76,6 +76,9 @@ public class Main {
 
             }
         }
+
+        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
+
         //print bucket size of buckets
         System.out.println("amount of buckets" + bucket.length);
         for (int i = 0; i < amountofbuckets; i++){

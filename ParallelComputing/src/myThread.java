@@ -16,7 +16,7 @@ public class myThread extends Thread {
     }
 
     public void run(){
-        System.out.println("MyThread running");
+//        System.out.println("MyThread running");
         double arrayinbuckets = System.nanoTime();
 
         for (int i = 0; i < arrayThread.length; i++) {
@@ -27,7 +27,7 @@ public class myThread extends Thread {
                 }
             }
         }
-        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
+//        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
 
 //        for (Integer arr : arrayThread) {
 //            System.out.println(arr);
