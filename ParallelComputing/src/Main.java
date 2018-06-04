@@ -8,9 +8,11 @@ public class Main {
     private static int[] array;
     private static int[] firstHalf;
     private static int[] secondHalf;
+    private static int[] thirdHalf;
+    private static int[] fourthHalf;
     private static final int SIZE = 1000;
     private static final int MAX = 1000000;
-    private static final int amountofbuckets = 10;
+    private static final int amountofbuckets = 600;
 
     public static void main(String[] args) {
         //bucketsort
@@ -28,8 +30,18 @@ public class Main {
     }
 
     public static void splitArray(){
-        firstHalf = Arrays.copyOfRange(array, 0, array.length/2);
-        secondHalf= Arrays.copyOfRange(array, array.length/2, array.length);
+        int beginOfParts = 0;
+        int endOfParts = array.length/4;
+        firstHalf = Arrays.copyOfRange(array, beginOfParts, endOfParts);
+        beginOfParts += array.length/4;
+        endOfParts += array.length/4;
+        secondHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
+        beginOfParts += array.length/4;
+        endOfParts += array.length/4;
+        thirdHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
+        beginOfParts += array.length/4;
+        endOfParts += array.length/4;
+        fourthHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
     }
 
     public static void bucketsort(int[] array) {
@@ -67,30 +79,35 @@ public class Main {
         myThread1.start();
         myThread myThread2 = new myThread(secondHalf, bucketsize, bucket, amountofbuckets);
         myThread2.start();
-        while (true) {
+        myThread myThread3 = new myThread(thirdHalf, bucketsize, bucket, amountofbuckets);
+        myThread3.start();
+        myThread myThread4 = new myThread(fourthHalf, bucketsize, bucket, amountofbuckets);
+        myThread4.start();
             try {
                 myThread1.join();
                 myThread2.join();
-                break;
+                myThread3.join();
+                myThread4.join();
             } catch (Exception e) {
-
+                System.out.println("Exception");
             }
-        }
 
         System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
 
         //print bucket size of buckets
-        System.out.println("amount of buckets" + bucket.length);
-        for (int i = 0; i < amountofbuckets; i++){
-            System.out.println("bucketsize" + i +" = "+bucket[i].size());
-        }
+//        System.out.println("amount of buckets" + bucket.length);
+//        for (int i = 0; i < amountofbuckets; i++){
+//            System.out.println("bucketsize" + i +" = "+bucket[i].size());
+//        }
 
         //sort every bucket
         double sortbuckets = System.nanoTime();
-        System.out.print("Sort buckets - ");
+        System.out.println("Sort buckets - ");
         for (int i = 0; i < amountofbuckets; i++) {
+//            System.out.print(i +" ");
             Collections.sort(bucket[i]);
         }
+//        Collections.sort(bucket);
         System.out.println((System.nanoTime() - sortbuckets) / 1000000000);
 
         //buckets to array
@@ -104,14 +121,6 @@ public class Main {
             }
         }
         System.out.println((System.nanoTime() - bucketstoarray) / 1000000000);
-
-//        for (Integer arr : firstHalf) {
-//            System.out.println(arr);
-//        }
-//
-//        for (Integer arr : secondHalf) {
-//            System.out.println(arr);
-//        }
 
         double eind = System.nanoTime();
         System.out.println();
