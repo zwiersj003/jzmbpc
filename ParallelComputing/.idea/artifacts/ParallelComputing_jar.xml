@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ParallelComputing:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ParallelComputing_jar</output-path>
+    <root id="archive" name="ParallelComputing.jar">
+      <element id="module-output" name="ParallelComputing" />
+    </root>
+  </artifact>
+</component>

@@ -1,21 +1,33 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Main {
 
     private static int[] array;
-    private static int[] firstHalf;
-    private static int[] secondHalf;
-    private static int[] thirdHalf;
-    private static int[] fourthHalf;
-    private static final int SIZE = 1000;
-    private static final int MAX = 1000000;
-    private static final int amountofbuckets = 600;
+    private static int SIZE = 1000000;
+    private static int MAX = 1000000;
+    private static int amountofbuckets = 4;
+
+    private static LinkedList[] bucket;
+    private static Scanner sc;
+
+    //dataset groter maken
+    //problemen moet richting seconde
+    //sort is dus bubblesort en dan parallelliseren
 
     public static void main(String[] args) {
+        sc = new Scanner(System.in);
+        System.out.print("Input yourself: ");
+        String input = sc.next();
+        if (input.equals("j")) {
+            System.out.print("Size: "); SIZE = sc.nextInt();
+            System.out.print("Amount of buckets: "); amountofbuckets = sc.nextInt();
+        }
+
         //bucketsort
+        System.out.println("Size: " +SIZE);
+        System.out.println("Max: " +MAX);
+        System.out.println("Amount of buckets: " +amountofbuckets);
         System.out.println("Bucketsort");
         createRandomArray();
         bucketsort(array);
@@ -29,21 +41,6 @@ public class Main {
         }
     }
 
-    public static void splitArray(){
-        int beginOfParts = 0;
-        int endOfParts = array.length/4;
-        firstHalf = Arrays.copyOfRange(array, beginOfParts, endOfParts);
-        beginOfParts += array.length/4;
-        endOfParts += array.length/4;
-        secondHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
-        beginOfParts += array.length/4;
-        endOfParts += array.length/4;
-        thirdHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
-        beginOfParts += array.length/4;
-        endOfParts += array.length/4;
-        fourthHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
-    }
-
     public static void bucketsort(int[] array) {
         double begin = System.nanoTime();
 
@@ -53,7 +50,7 @@ public class Main {
         // add buckets
         double addbuckets = System.nanoTime();
         System.out.print("Create buckets - ");
-        LinkedList[] bucket = new LinkedList[amountofbuckets];
+        bucket = new LinkedList[amountofbuckets];
         for (int i = 0; i < amountofbuckets; i++) {
             bucket[i] = new LinkedList<Integer>();
         }
@@ -62,53 +59,29 @@ public class Main {
 
         //loop array and put in buckets
         double arrayinbuckets = System.nanoTime();
-        System.out.print("Put array in buckets - ");
+        System.out.println("Put array in buckets - ");
 
-//        for (int i = 0; i < array.length; i++) {
-//            for (int j = 1; j <= amountofbuckets; j++){
-//                if (array[i]< bucketsize*j) {
-//                    bucket[j-1].add(array[i]);
-//                    break;
-//                }
-//            }
-//        }
-
-        splitArray();
-
-        myThread myThread1 = new myThread(firstHalf, bucketsize, bucket, amountofbuckets);
-        myThread1.start();
-        myThread myThread2 = new myThread(secondHalf, bucketsize, bucket, amountofbuckets);
-        myThread2.start();
-        myThread myThread3 = new myThread(thirdHalf, bucketsize, bucket, amountofbuckets);
-        myThread3.start();
-        myThread myThread4 = new myThread(fourthHalf, bucketsize, bucket, amountofbuckets);
-        myThread4.start();
-            try {
-                myThread1.join();
-                myThread2.join();
-                myThread3.join();
-                myThread4.join();
-            } catch (Exception e) {
-                System.out.println("Exception");
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 1; j <= amountofbuckets; j++){
+                if (array[i]< bucketsize*j) {
+                    bucket[j-1].add(array[i]);
+                    break;
+                }
             }
-
+        }
         System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
 
-        //print bucket size of buckets
-//        System.out.println("amount of buckets" + bucket.length);
-//        for (int i = 0; i < amountofbuckets; i++){
-//            System.out.println("bucketsize" + i +" = "+bucket[i].size());
-//        }
-
-        //sort every bucket
-        double sortbuckets = System.nanoTime();
-        System.out.println("Sort buckets - ");
-        for (int i = 0; i < amountofbuckets; i++) {
-//            System.out.print(i +" ");
-            Collections.sort(bucket[i]);
+        //sort buckets
+        System.out.print("parallel (p) or lineair (l): ");
+        String pl = sc.next();
+        if (pl.equals("p")){
+            sortParalell();
+        } else {
+            sortLineair();
         }
-//        Collections.sort(bucket);
-        System.out.println((System.nanoTime() - sortbuckets) / 1000000000);
+
+        //print bucket size of buckets
+        System.out.println("amount of buckets" + bucket.length);
 
         //buckets to array
         double bucketstoarray = System.nanoTime();
@@ -127,11 +100,67 @@ public class Main {
         System.out.println("Tijd(sec):  " + (eind - begin) / 1000000000);
     }
 
+    public static void sortParalell(){
+        double sortbuckets = System.nanoTime();
+        myThread[] threads = new myThread[amountofbuckets];
+//        for (int i = 0; i< amountofbuckets; i++){
+//            threads[i] = new myThread(bucket[i]);
+//        }
+//
+//        for (int i = 0; i < amountofbuckets; i++){
+//            threads[i].run();
+//        }
+//
+//        try{
+//            for (int i = 0; i< amountofbuckets; i++){
+//                threads[i].join();
+//            }
+//        } catch (Exception e){
+//            System.out.println(e);
+//        }
 
+        myThread thread1 = new myThread(bucket[0]);
+        thread1.start();
+        myThread thread2 = new myThread(bucket[1]);
+        thread2.start();
+        myThread thread3 = new myThread(bucket[2]);
+        thread3.start();
+        myThread thread4 = new myThread(bucket[3]);
+        thread4.start();
 
+        try {
+            thread1.join();
+            thread2.join();
+            thread3.join();
+            thread4.join();
+        }catch (Exception e){}
+        System.out.println("Sorting buckets time Parallel: ");
+        System.out.println((System.nanoTime() - sortbuckets) / 1000000000);
+    }
 
+    public static void sortLineair(){
+        //sort every bucket
+        double sortbuckets = System.nanoTime();
+        System.out.println("Sort buckets - ");
+        for (int i = 0; i < amountofbuckets; i++) {
+            bubbleSort(bucket[i]);
+        }
+        System.out.println("Sorting buckets time Lineair: ");
+        System.out.println((System.nanoTime() - sortbuckets) / 1000000000);
+    }
 
-
+    public static void bubbleSort(LinkedList list) {
+        Object temp = list.get(0);
+        for (int j = 0; j < list.size() -1; j++) {
+            for (int i = 0; i < list.size() -j -1; i++) {
+                if ((int)list.get(i) < (int)list.get(i+1)){
+                    temp = list.get(i);
+                    list.set(i, list.get(i+1));
+                    list.set(i+1, temp);
+                }
+            }
+        }
+    }
 
 
 
