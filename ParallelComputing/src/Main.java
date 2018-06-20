@@ -12,7 +12,8 @@ public class Main {
     private static int[] fourthHalf;
     private static final int SIZE = 1000;
     private static final int MAX = 1000000;
-    private static final int amountofbuckets = 600;
+    private static final int amountofbuckets = 20;
+    private static final int LISTS = 4;
 
     public static void main(String[] args) {
         //bucketsort
@@ -30,18 +31,18 @@ public class Main {
     }
 
     public static void splitArray(){
-        int beginOfParts = 0;
-        int endOfParts = array.length/4;
-        firstHalf = Arrays.copyOfRange(array, beginOfParts, endOfParts);
-        beginOfParts += array.length/4;
-        endOfParts += array.length/4;
-        secondHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
-        beginOfParts += array.length/4;
-        endOfParts += array.length/4;
-        thirdHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
-        beginOfParts += array.length/4;
-        endOfParts += array.length/4;
-        fourthHalf= Arrays.copyOfRange(array, beginOfParts, endOfParts);
+        int beginOfPart = 0;
+        int endOfPart = array.length/LISTS;
+        firstHalf = Arrays.copyOfRange(array, beginOfPart, endOfPart);
+        beginOfPart += array.length/LISTS;
+        endOfPart += array.length/LISTS;
+        secondHalf= Arrays.copyOfRange(array, beginOfPart, endOfPart);
+        beginOfPart += array.length/LISTS;
+        endOfPart += array.length/LISTS;
+        thirdHalf= Arrays.copyOfRange(array, beginOfPart, endOfPart);
+        beginOfPart += array.length/LISTS;
+        endOfPart += array.length/LISTS;
+        fourthHalf= Arrays.copyOfRange(array, beginOfPart, endOfPart);
     }
 
     public static void bucketsort(int[] array) {
@@ -62,16 +63,7 @@ public class Main {
 
         //loop array and put in buckets
         double arrayinbuckets = System.nanoTime();
-        System.out.print("Put array in buckets - ");
-
-//        for (int i = 0; i < array.length; i++) {
-//            for (int j = 1; j <= amountofbuckets; j++){
-//                if (array[i]< bucketsize*j) {
-//                    bucket[j-1].add(array[i]);
-//                    break;
-//                }
-//            }
-//        }
+        System.out.println("Put array in buckets - ");
 
         splitArray();
 
@@ -92,23 +84,22 @@ public class Main {
                 System.out.println("Exception");
             }
 
-        System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
+        System.out.print("Threads Done - ");
 
-        //print bucket size of buckets
-//        System.out.println("amount of buckets" + bucket.length);
-//        for (int i = 0; i < amountofbuckets; i++){
-//            System.out.println("bucketsize" + i +" = "+bucket[i].size());
-//        }
+        System.out.println("Elapsed Time: " +(System.nanoTime() - arrayinbuckets) / 1000000000);
 
         //sort every bucket
         double sortbuckets = System.nanoTime();
         System.out.println("Sort buckets - ");
+        int k = 0;
+        System.out.println("Bucket[0] size " + bucket[0].size());
+
         for (int i = 0; i < amountofbuckets; i++) {
 //            System.out.print(i +" ");
             Collections.sort(bucket[i]);
         }
 //        Collections.sort(bucket);
-        System.out.println((System.nanoTime() - sortbuckets) / 1000000000);
+        System.out.println("Elapsed Time: " +(System.nanoTime() - sortbuckets) / 1000000000);
 
         //buckets to array
         double bucketstoarray = System.nanoTime();
@@ -133,7 +124,15 @@ public class Main {
 
 
 
-
+// Array of buckets
+//        for (int i = 0; i < array.length; i++) {
+//            for (int j = 1; j <= amountofbuckets; j++){
+//                if (array[i]< bucketsize*j) {
+//                    bucket[j-1].add(array[i]);
+//                    break;
+//                }
+//            }
+//        }
 
 
 
