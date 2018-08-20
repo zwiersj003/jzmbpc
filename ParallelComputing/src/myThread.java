@@ -13,7 +13,7 @@ public class myThread extends Thread {
     }
 
     public void run(){
-        System.out.println("MyThread running");
+//        System.out.println("MyThread running");
         double arrayinbuckets = System.nanoTime();
         bubbleSort(bucket);
         System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
