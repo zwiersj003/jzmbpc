@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class Main {
 
     private static int[] array;
-    private static int SIZE = 1000000;
+    private static int SIZE = 100000;
     private static int MAX = 1000000;
-    private static int amountofbuckets = 4;
+    private static int amountofbuckets = 100;
 
     private static LinkedList[] bucket;
     private static Scanner sc;
@@ -16,21 +16,34 @@ public class Main {
     //sort is dus bubblesort en dan parallelliseren
 
     public static void main(String[] args) {
-        sc = new Scanner(System.in);
-        System.out.print("Input yourself: ");
-        String input = sc.next();
-        if (input.equals("j")) {
-            System.out.print("Size: "); SIZE = sc.nextInt();
-            System.out.print("Amount of buckets: "); amountofbuckets = sc.nextInt();
-        }
-
-        //bucketsort
+//        sc = new Scanner(System.in);
+//        System.out.print("Input yourself: ");
+//        String input = sc.next();
+//        if (input.equals("j")) {
+//            System.out.print("Size: "); SIZE = sc.nextInt();
+//            System.out.print("Amount of buckets: "); amountofbuckets = sc.nextInt();
+//        }
+//
+//        //bucketsort
         System.out.println("Size: " +SIZE);
         System.out.println("Max: " +MAX);
         System.out.println("Amount of buckets: " +amountofbuckets);
         System.out.println("Bucketsort");
         createRandomArray();
         bucketsort(array);
+
+        //pigeonholesort
+//        createRandomArray();
+//        printarray();
+//        pigeonholesort(array);
+//        printarray();
+
+    }
+
+    public static void printarray(){
+        for (Integer i : array){
+            System.out.print(i+", ");
+        }
     }
 
     public static void createRandomArray(){
@@ -71,14 +84,7 @@ public class Main {
         }
         System.out.println((System.nanoTime() - arrayinbuckets) / 1000000000);
 
-        //sort buckets
-        System.out.print("parallel (p) or lineair (l): ");
-        String pl = sc.next();
-        if (pl.equals("p")){
-            sortParalell();
-        } else {
-            sortLineair();
-        }
+        sortParalell();
 
         //print bucket size of buckets
         System.out.println("amount of buckets" + bucket.length);
@@ -103,37 +109,21 @@ public class Main {
     public static void sortParalell(){
         double sortbuckets = System.nanoTime();
         myThread[] threads = new myThread[amountofbuckets];
-//        for (int i = 0; i< amountofbuckets; i++){
-//            threads[i] = new myThread(bucket[i]);
-//        }
-//
-//        for (int i = 0; i < amountofbuckets; i++){
-//            threads[i].run();
-//        }
-//
-//        try{
-//            for (int i = 0; i< amountofbuckets; i++){
-//                threads[i].join();
-//            }
-//        } catch (Exception e){
-//            System.out.println(e);
-//        }
+        for (int i = 0; i< amountofbuckets; i++){
+            threads[i] = new myThread(bucket[i]);
+        }
 
-        myThread thread1 = new myThread(bucket[0]);
-        thread1.start();
-        myThread thread2 = new myThread(bucket[1]);
-        thread2.start();
-        myThread thread3 = new myThread(bucket[2]);
-        thread3.start();
-        myThread thread4 = new myThread(bucket[3]);
-        thread4.start();
+        for (int i = 0; i < amountofbuckets; i++){
+            threads[i].start();
+        }
 
-        try {
-            thread1.join();
-            thread2.join();
-            thread3.join();
-            thread4.join();
-        }catch (Exception e){}
+        try{
+            for (int i = 0; i< amountofbuckets; i++){
+                threads[i].join();
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
         System.out.println("Sorting buckets time Parallel: ");
         System.out.println((System.nanoTime() - sortbuckets) / 1000000000);
     }
@@ -171,6 +161,8 @@ public class Main {
 
     public static void pigeonholesort(int[] array)
     {
+        System.out.println();
+        System.out.println("Pigeonholesort");
         for (Integer i : array){
             System.out.print(i + ", ");
         }
