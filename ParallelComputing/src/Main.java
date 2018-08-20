@@ -21,6 +21,9 @@ public class Main {
     private static final int SIZE = 1000;
     private static final int MAX = 1000000;
     private static final int amountofbuckets = 10;
+<<<<<<< HEAD
+>>>>>>> parent of 207de77... 4 threads
+=======
 >>>>>>> parent of 207de77... 4 threads
 
     public static void main(String[] args) {
