@@ -22,11 +22,16 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="510">
               <caret line="105" column="73" lean-forward="true" selection-start-line="88" selection-start-column="8" selection-end-line="105" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="68">
+              <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+>>>>>>> parent of 207de77... 4 threads
 =======
             <state relative-caret-position="68">
               <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
@@ -44,8 +49,13 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="408">
               <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+=======
+            <state relative-caret-position="391">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+>>>>>>> parent of 207de77... 4 threads
 =======
             <state relative-caret-position="391">
               <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
@@ -69,11 +79,14 @@
   </component>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="FindInProjectRecents">
     <findStrings>
       <find>Linked</find>
     </findStrings>
   </component>
+=======
+>>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
 =======
@@ -108,6 +121,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
@@ -115,11 +129,16 @@
 =======
 =======
 >>>>>>> parent of 207de77... 4 threads
+=======
+>>>>>>> parent of 207de77... 4 threads
     <option name="x" value="-11" />
     <option name="y" value="-11" />
     <option name="width" value="2183" />
     <option name="height" value="1403" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 207de77... 4 threads
+=======
 >>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
@@ -128,6 +147,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <panes>
@@ -151,6 +171,9 @@
       <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
+=======
+    <panes />
+>>>>>>> parent of 207de77... 4 threads
 =======
     <panes />
 >>>>>>> parent of 207de77... 4 threads
@@ -235,6 +258,7 @@
       <workItem from="1527574718862" duration="4119000" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1527585652054" duration="56000" />
       <workItem from="1528097182955" duration="3634000" />
       <workItem from="1528103993190" duration="1499000" />
@@ -256,13 +280,19 @@
 >>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
+=======
+>>>>>>> parent of 207de77... 4 threads
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="59573000" />
+=======
+    <option name="totallyTimeSpent" value="28073000" />
+>>>>>>> parent of 207de77... 4 threads
 =======
     <option name="totallyTimeSpent" value="28073000" />
 >>>>>>> parent of 207de77... 4 threads
@@ -276,6 +306,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -298,6 +329,8 @@
 =======
 =======
 >>>>>>> parent of 207de77... 4 threads
+=======
+>>>>>>> parent of 207de77... 4 threads
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32919255" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
@@ -317,6 +350,9 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="7" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 207de77... 4 threads
+=======
 >>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
@@ -326,7 +362,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32919255" />
+=======
+>>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
 =======
@@ -346,6 +385,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="2448">
@@ -537,6 +577,8 @@
 >>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
+=======
+>>>>>>> parent of 207de77... 4 threads
         <state relative-caret-position="952">
           <caret line="56" column="48" lean-forward="true" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
         </state>
@@ -681,6 +723,7 @@
     <entry file="file://$PROJECT_DIR$/src/Thread.java" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="jar://$PROJECT_DIR$/../../../Downloads/jdk1.8.0_60/jre/lib/rt.jar!/java/util/Arrays.class" />
     <entry file="file://$PROJECT_DIR$/src/InsertionSort.java" />
     <entry file="jar://$PROJECT_DIR$/../../../Downloads/jdk1.8.0_60/jre/lib/rt.jar!/java/util/LinkedList.class">
@@ -701,6 +744,10 @@
     <entry file="file://$PROJECT_DIR$/src/myThread.java">
       <provider selected="true" editor-type-id="text-editor">
 >>>>>>> parent of 207de77... 4 threads
+=======
+    <entry file="file://$PROJECT_DIR$/src/myThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> parent of 207de77... 4 threads
         <state relative-caret-position="391">
           <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
@@ -711,6 +758,9 @@
         <state relative-caret-position="31954">
           <caret line="2188" selection-start-line="2188" selection-end-line="2188" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 207de77... 4 threads
+=======
 >>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
@@ -721,11 +771,16 @@
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="510">
           <caret line="105" column="73" lean-forward="true" selection-start-line="88" selection-start-column="8" selection-end-line="105" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="68">
+          <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+>>>>>>> parent of 207de77... 4 threads
 =======
         <state relative-caret-position="68">
           <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
