@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class Main {
 
     private static int[] array;
-<<<<<<< HEAD
     private static int SIZE = 100000;
     private static int MAX = 1000000;
     private static int amountofbuckets = 100;
@@ -15,7 +14,6 @@ public class Main {
     //dataset groter maken
     //problemen moet richting seconde
     //sort is dus bubblesort en dan parallelliseren
-=======
     private static int[] firstHalf;
     private static int[] secondHalf;
     private static final int SIZE = 1000;
@@ -23,6 +21,9 @@ public class Main {
     private static final int amountofbuckets = 10;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 207de77... 4 threads
+=======
 >>>>>>> parent of 207de77... 4 threads
 =======
 >>>>>>> parent of 207de77... 4 threads
@@ -68,8 +69,6 @@ public class Main {
         }
     }
 
-<<<<<<< HEAD
-=======
     public static void splitArray(){
         firstHalf = Arrays.copyOfRange(array, 0, array.length/2);
         secondHalf= Arrays.copyOfRange(array, array.length/2, array.length);
